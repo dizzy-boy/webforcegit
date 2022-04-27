@@ -17,16 +17,23 @@ print("La table etudiant contient les infos suivantes: ")
 print(resultat)
 
 ######### PARTIE POUR LE REMPLISSAGE DE LA TABLE #######
+while(True):
 
-Nom = input("Entrer un nom: ")
-Age = int(input("Entrer un age: "))
-Genre = input("Entrer un Genre: ")
-Formation = input("Entrer une Formation: ")
+    Nom = input("Entrer un nom: ")
 
-requeteAjout = "INSERT INTO etudiants (Nom,Age, Genre, Formation) VALUES (%s, %s,%s, %s)"
-valeurs = (Nom, Age, Genre, Formation)
+    if Nom.lower()=="quit":
+        exit()
+
+    Age = int(input("Entrer un age: "))
+    Genre = input("Entrer un Genre: ")
+    Formation = input("Entrer une Formation: ")
+
+    requeteAjout = """INSERT INTO etudiants (Nom,Age, Genre, Formation)
+                    VALUES (%s, %s,%s, %s)"""
+    valeurs = (Nom, Age, Genre, Formation)
 
 
-curseur.execute(requeteAjout, valeurs)
-maBaseDeDonne.commit()
+    curseur.execute(requeteAjout, valeurs)
+    maBaseDeDonne.commit()
+    print("Une info rajouté")
 print("fin")
